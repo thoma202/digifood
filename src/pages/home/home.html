@@ -5,13 +5,47 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>Bienvenue dans l'interface de réservation !</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    Vous trouverez ci-dessous la liste des produits disponibles.
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col  *ngFor="let item of menu" col-md-4>
+        <ion-card>
+
+          <img [src]="item.image"/>
+
+          <ion-card-content>
+            <ion-card-title>
+              {{item.name}}
+            </ion-card-title>
+            <p>
+              {{item.description}}
+            </p>
+          </ion-card-content>
+          
+          <div class="options" *ngIf="item.options !== undefined">
+          <ion-item *ngFor="let option of item.options">
+            <ion-label> {{option.name}}</ion-label>
+            <ion-toggle checked="false"></ion-toggle>
+          </ion-item>
+          </div>
+      
+          <div text-center>
+            <ion-item text-center>
+              {{item.price}}€
+            </ion-item>
+            <button ion-button full>
+              <ion-icon name='cart' item-start></ion-icon>
+              &nbsp;&nbsp;Ajouter au panier
+            </button>  
+          </div>
+          
+          
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
